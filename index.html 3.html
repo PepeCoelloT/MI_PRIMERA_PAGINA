@@ -1,444 +1,200 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendas JC PLANNER</title>
 
-<title>Agendas JC PLANNER</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-<!-- Bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    body {
+      background: #f4f6f9;
+      color: #333;
+    }
 
-<style>
+    header {
+      background: #1e3a8a;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-body{
-background:#f4f6f9;
-font-family:Arial,sans-serif;
-}
+    nav {
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-header{
-background:linear-gradient(135deg,#6a11cb,#2575fc);
-color:white;
-padding:90px 20px;
-text-align:center;
-}
+    nav a {
+      color: white;
+      padding: 15px 20px;
+      text-decoration: none;
+      display: inline-block;
+    }
 
-.hero-btn{
-margin-top:20px;
-}
+    nav a:hover {
+      background: #2563eb;
+    }
 
-section{
-padding:60px 0;
-}
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(to right, #2563eb, #1e3a8a);
+      color: white;
+    }
 
-.card{
-border:none;
-border-radius:15px;
-box-shadow:0 5px 20px rgba(0,0,0,.15);
-transition:.3s;
-}
+    .section {
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-.card:hover{
-transform:translateY(-8px);
-}
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
 
-.custom-box{
-background:white;
-padding:30px;
-border-radius:15px;
-box-shadow:0 3px 10px rgba(0,0,0,.1);
-}
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
 
-aside{
-background:#fff8dc;
-padding:30px;
-border-left:6px solid orange;
-border-radius:10px;
-}
+    .btn {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #1e3a8a;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
 
-footer{
-background:#1f2937;
-color:white;
-padding:20px;
-text-align:center;
-}
+    .btn:hover {
+      background: #2563eb;
+    }
 
-.btn-custom{
-background:#6a11cb;
-color:white;
-}
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      margin: auto;
+    }
 
-.btn-custom:hover{
-background:#2575fc;
-color:white;
-}
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-@media(max-width:768px){
-
-header h1{
-font-size:2rem;
-}
-
-.hero-text{
-padding:10px;
-}
-
-}
-
-</style>
-
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-
-<h1>Agendas JC PLANNER</h1>
-
-<p>
-Diseño y creación de agendas personalizadas para estudiantes,
-profesionales y emprendedores.
-</p>
-
-<a href="#contacto" class="btn btn-warning hero-btn">
-Contáctanos
-</a>
-
-</header>
-
-<!-- NAVBAR -->
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-
-<div class="container">
-
-<a class="navbar-brand" href="#">
-JC PLANNER
-</a>
-
-<button
-class="navbar-toggler"
-type="button"
-data-bs-toggle="collapse"
-data-bs-target="#menu">
-
-<span class="navbar-toggler-icon"></span>
-
-</button>
-
-<div class="collapse navbar-collapse" id="menu">
-
-<ul class="navbar-nav ms-auto">
-
-<li class="nav-item">
-<a class="nav-link" href="#inicio">Inicio</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="#quienes">Quiénes Somos</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="#productos">Productos</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="#contacto">Contacto</a>
-</li>
-
-</ul>
-
-</div>
-
-</div>
-
-</nav>
-
-<main class="container">
-
-<!-- INICIO -->
-
-<section id="inicio">
-
-<div class="row align-items-center">
-
-<div class="col-md-6 hero-text">
-
-<h2>Inicio</h2>
-
-<p>
-
-Bienvenido a Agendas JC PLANNER.
-
-Creamos agendas modernas y personalizadas para organizar actividades,
-metas y proyectos.
-
-</p>
-
-<a class="btn btn-custom">
-Ver Catálogo
-</a>
-
-</div>
-
-<div class="col-md-6">
-
-<img
-src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200"
-class="img-fluid rounded">
-
-</div>
-
-</div>
-
-</section>
-
-<!-- QUIENES SOMOS -->
-
-<section id="quienes">
-
-<div class="row">
-
-<div class="col-md-6">
-
-<img
-src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?w=1200"
-class="img-fluid rounded">
-
-</div>
-
-<div class="col-md-6">
-
-<div class="custom-box">
-
-<h2>Quiénes Somos</h2>
-
-<p>
-
-Somos un emprendimiento dedicado al diseño y elaboración de agendas
-personalizadas.
-
-Cada producto combina creatividad, funcionalidad y estilo.
-
-Buscamos fomentar hábitos de organización y productividad.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- PRODUCTOS -->
-
-<section id="productos">
-
-<h2 class="text-center mb-5">
-
-Servicios o Productos
-
-</h2>
-
-<div class="row">
-
-<div class="col-md-4 p-3">
-
-<div class="card">
-
-<div class="card-body">
-
-<h5>Agenda Académica</h5>
-
-<p>
-Diseño personalizado para estudiantes.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="col-md-4 p-3">
-
-<div class="card">
-
-<div class="card-body">
-
-<h5>Agenda Ejecutiva</h5>
-
-<p>
-Ideal para profesionales.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="col-md-4 p-3">
-
-<div class="card">
-
-<div class="card-body">
-
-<h5>Planners</h5>
-
-<p>
-Planificación semanal y mensual.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ARTICLE -->
-
-<article class="custom-box m-3">
-
-<h2>Nuestro Compromiso</h2>
-
-<p>
-
-Brindar productos de calidad con atención personalizada.
-
-</p>
-
-</article>
-
-<!-- CONTACTO -->
-
-<section id="contacto">
-
-<div class="row">
-
-<div class="col-md-6">
-
-<h2>Contacto</h2>
-
-<form>
-
-<input
-type="text"
-class="form-control mb-3"
-placeholder="Nombre">
-
-<input
-type="email"
-class="form-control mb-3"
-placeholder="Correo">
-
-<input
-type="text"
-class="form-control mb-3"
-placeholder="Asunto">
-
-<textarea
-class="form-control mb-3"
-rows="5"
-placeholder="Mensaje">
-</textarea>
-
-<button
-class="btn btn-success">
-
-Enviar
-
-</button>
-
-</form>
-
-</div>
-
-<div class="col-md-6">
-
-<div class="custom-box">
-
-<h4>Información</h4>
-
-<p>
-Correo:
-agendasjcplanner@gmail.com
-</p>
-
-<p>
-Teléfono:
-0963322087
-</p>
-
-<p>
-Baba - Los Ríos
-</p>
-
-<a
-href="mailto:agendasjcplanner@gmail.com"
-class="btn btn-primary m-2">
-
-Correo
-
-</a>
-
-<a
-href="https://facebook.com"
-class="btn btn-info m-2">
-
-Facebook
-
-</a>
-
-<a
-href="https://instagram.com"
-class="btn btn-danger m-2">
-
-Instagram
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ASIDE -->
-
-<aside class="m-3">
-
-<h2>Información Complementaria</h2>
-
-<p>15% descuento primera compra.</p>
-
-<p>Personalización gratuita.</p>
-
-<p>Entregas a domicilio.</p>
-
-</aside>
-
-</main>
-
-<footer>
-
-José Coello | Desarrollo Web | 2026
-
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- HEADER -->
+  <header>
+    <h1>Agendas JC PLANNER</h1>
+    <p>Diseño y creación de agendas personalizadas</p>
+  </header>
+
+  <!-- MENU -->
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#quienes">Quiénes Somos</a>
+    <a href="#productos">Productos</a>
+    <a href="#contacto">Contacto</a>
+    <a href="#registro">Registro</a>
+  </nav>
+
+  <!-- INICIO -->
+  <section id="inicio" class="hero">
+    <h2>Bienvenido a JC PLANNER</h2>
+    <p>Organiza tu vida, tus metas y tus proyectos con estilo.</p>
+  </section>
+
+  <!-- QUIENES SOMOS -->
+  <section id="quienes" class="section">
+    <h2>Quiénes Somos</h2>
+    <p>
+      Somos un emprendimiento dedicado al diseño y elaboración de agendas personalizadas
+      para estudiantes, profesionales y emprendedores. Nuestro objetivo es ayudarte a
+      organizar tu tiempo de manera eficiente y moderna.
+    </p>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section id="productos" class="section">
+    <h2>Productos</h2>
+
+    <div class="card-container">
+
+      <div class="card">
+        <h3>Agenda Estudiantil</h3>
+        <p>Ideal para organizar tareas y horarios escolares.</p>
+        <button class="btn">Ver más</button>
+      </div>
+
+      <div class="card">
+        <h3>Agenda Profesional</h3>
+        <p>Perfecta para trabajo, reuniones y proyectos.</p>
+        <button class="btn">Ver más</button>
+      </div>
+
+      <div class="card">
+        <h3>Agenda Emprendedor</h3>
+        <p>Diseñada para controlar metas y negocios.</p>
+        <button class="btn">Ver más</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="section">
+    <h2>Contacto</h2>
+
+    <form>
+      <input type="text" placeholder="Nombre">
+      <input type="email" placeholder="Correo">
+      <textarea rows="5" placeholder="Mensaje"></textarea>
+      <button class="btn" type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <!-- REGISTRO -->
+  <section id="registro" class="section">
+    <h2>Registro</h2>
+
+    <form>
+      <input type="text" placeholder="Usuario">
+      <input type="password" placeholder="Contraseña">
+      <button class="btn" type="submit">Registrarse</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Agendas JC PLANNER - Todos los derechos reservados</p>
+  </footer>
 
 </body>
-
 </html>
-```
