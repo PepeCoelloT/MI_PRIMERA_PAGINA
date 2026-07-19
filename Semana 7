@@ -1,0 +1,255 @@
+// ===============================
+// JC PLANNER
+// Semana 6 - Desarrollo Web
+// ===============================
+
+const formulario = document.getElementById("agendaForm");
+
+const nombre = document.getElementById("nombre");
+const descripcion = document.getElementById("descripcion");
+const categoria = document.getElementById("categoria");
+
+const errorNombre = document.getElementById("errorNombre");
+const errorDescripcion = document.getElementById("errorDescripcion");
+const errorCategoria = document.getElementById("errorCategoria");
+
+const listaAgendas = document.getElementById("listaAgendas");
+const contador = document.getElementById("contador");
+const mensaje = document.getElementById("mensaje");
+
+let agendas = [];
+
+// ==========================
+// VALIDAR NOMBRE
+// ==========================
+
+function validarNombre(){
+
+    if(nombre.value.trim()===""){
+
+        nombre.classList.add("is-invalid");
+        nombre.classList.remove("is-valid");
+        errorNombre.textContent="El nombre es obligatorio.";
+        return false;
+
+    }
+
+    if(nombre.value.trim().length<3){
+
+        nombre.classList.add("is-invalid");
+        nombre.classList.remove("is-valid");
+        errorNombre.textContent="Debe tener mínimo 3 caracteres.";
+        return false;
+
+    }
+
+    nombre.classList.remove("is-invalid");
+    nombre.classList.add("is-valid");
+    errorNombre.textContent="";
+
+    return true;
+
+}
+
+// ==========================
+// VALIDAR DESCRIPCIÓN
+// ==========================
+
+function validarDescripcion(){
+
+    if(descripcion.value.trim()===""){
+
+        descripcion.classList.add("is-invalid");
+        descripcion.classList.remove("is-valid");
+        errorDescripcion.textContent="La descripción es obligatoria.";
+        return false;
+
+    }
+
+    if(descripcion.value.trim().length<10){
+
+        descripcion.classList.add("is-invalid");
+        descripcion.classList.remove("is-valid");
+        errorDescripcion.textContent="Debe contener mínimo 10 caracteres.";
+        return false;
+
+    }
+
+    descripcion.classList.remove("is-invalid");
+    descripcion.classList.add("is-valid");
+    errorDescripcion.textContent="";
+
+    return true;
+
+}
+
+// ==========================
+// VALIDAR CATEGORÍA
+// ==========================
+
+function validarCategoria(){
+
+    if(categoria.value===""){
+
+        categoria.classList.add("is-invalid");
+        categoria.classList.remove("is-valid");
+        errorCategoria.textContent="Seleccione una categoría.";
+        return false;
+
+    }
+
+    categoria.classList.remove("is-invalid");
+    categoria.classList.add("is-valid");
+    errorCategoria.textContent="";
+
+    return true;
+
+}
+
+// ==========================
+// EVENTOS INPUT
+// ==========================
+
+nombre.addEventListener("input",validarNombre);
+descripcion.addEventListener("input",validarDescripcion);
+categoria.addEventListener("input",validarCategoria);
+
+// ==========================
+// EVENTOS BLUR
+// ==========================
+
+nombre.addEventListener("blur",validarNombre);
+descripcion.addEventListener("blur",validarDescripcion);
+categoria.addEventListener("blur",validarCategoria);
+
+// ==========================
+// CONTADOR
+// ==========================
+
+function actualizarContador(){
+
+    contador.textContent=agendas.length;
+
+}
+
+// ==========================
+// MOSTRAR AGENDAS
+// ==========================
+
+function mostrarAgendas(){
+
+    listaAgendas.innerHTML="";
+
+    agendas.forEach((agenda,index)=>{
+
+        listaAgendas.innerHTML+=`
+
+        <div class="col-md-4">
+
+            <div class="card agenda-card">
+
+                <div class="card-body">
+
+                    <h4>${agenda.nombre}</h4>
+
+                    <p>${agenda.descripcion}</p>
+
+                    <span class="badge bg-primary">
+                    ${agenda.categoria}
+                    </span>
+
+                    <hr>
+
+                    <button
+                    class="btn btn-danger w-100"
+                    onclick="eliminarAgenda(${index})">
+
+                    Eliminar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    actualizarContador();
+
+}
+
+// ==========================
+// ELIMINAR
+// ==========================
+
+function eliminarAgenda(indice){
+
+    agendas.splice(indice,1);
+
+    mostrarAgendas();
+
+}
+
+// ==========================
+// SUBMIT
+// ==========================
+
+formulario.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const nombreValido=validarNombre();
+    const descripcionValida=validarDescripcion();
+    const categoriaValida=validarCategoria();
+
+    if(!nombreValido || !descripcionValida || !categoriaValida){
+
+        mensaje.innerHTML=`
+
+        <div class="alert alert-danger">
+
+        Corrija los errores antes de registrar.
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+    const agenda={
+
+        nombre:nombre.value,
+
+        descripcion:descripcion.value,
+
+        categoria:categoria.value
+
+    };
+
+    agendas.push(agenda);
+
+    mostrarAgendas();
+
+    mensaje.innerHTML=`
+
+    <div class="alert alert-success">
+
+    Agenda registrada correctamente.
+
+    </div>
+
+    `;
+
+    formulario.reset();
+
+    nombre.classList.remove("is-valid");
+    descripcion.classList.remove("is-valid");
+    categoria.classList.remove("is-valid");
+
+});
